@@ -88,7 +88,18 @@ WorkThread中建立socket的输入输出流
 
 使用ServiceProvider来注册服务,只要输入实现类就可以注册到map里面
 
+## V3 版本
+* 对前端代码进行重构,抽象出RPCClient接口,这个接口只有sent方法,
+* 这个接口可以有多种实现,在实现时传入host和port参数,生成一个客户端对象
+* 用这个客户端初始化代理对象
+
+```java
+    RPCClient RPCClient = new SimpleRPCClient("127.0.0.1", 8080);
+    // 把这个客户端传入代理客户端
+    ClientProxy clientProxy = new ClientProxy(RPCClient);
+    // 代理客户端根据不同的服务，获得一个代理类， 并且这个代理类的方法以或者增强（封装数据，发送请求）
+    UserService userService = clientProxy.getProxy(UserService.class);
+```
 
 
-
-
+* 当前服务端采用BIO的方式,效率很低,尝试采用NIO的方法传输数据,gRPC,Dubbo都是采用Netty来实现的,我们也用Netty

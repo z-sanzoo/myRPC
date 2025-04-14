@@ -2,11 +2,13 @@ package com.zishanshu.common;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 
 @Data
 @Builder
+@ToString
 public class RPCResponse implements Serializable {
     private int code;
     private String message;
@@ -19,4 +21,5 @@ public class RPCResponse implements Serializable {
     public static RPCResponse fail() {
         return RPCResponse.builder().code(500).message("服务器错误").build();
     }
+
 }

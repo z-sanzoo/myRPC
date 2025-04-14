@@ -1,11 +1,8 @@
-package com.zishanshu.server;
-
-import com.zishanshu.server.Impl.ThreadPoolRPCServer;
+import com.zishanshu.server.RPCServer;
+import com.zishanshu.server.RPCServerImpl.NettyPRCServer;
+import com.zishanshu.server.ServiceProvider;
 import com.zishanshu.service.Impl.BlogServiceImpl;
 import com.zishanshu.service.Impl.UserServiceImpl;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class TestServer {
     public static void main(String[] args) {
@@ -19,9 +16,9 @@ public class TestServer {
 
 
         // 创建一个线程池RPC服务器
-         ThreadPoolRPCServer server = new ThreadPoolRPCServer(serviceProvider);
+        RPCServer server = new NettyPRCServer(serviceProvider);
          // 启动服务器
-         server.start(8080);
+        server.start(8080);
     }
 
 }
