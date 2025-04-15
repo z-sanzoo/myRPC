@@ -25,11 +25,15 @@
 <!--        </encoder>-->
 <!--    </appender>-->
 
-    <logger name="com.zishanshu" level="DEBUG" additional="true" >
+    <logger name="com.zishanshu" level="DEBUG" additional="false" >
         <appender-ref ref="STDOUT" />
     </logger>
+    <logger name="io.netty.handler.logging" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
 
-<!--    <logger name="com.zishanshu" level="INFO" additional="true" >-->
+
+    <!--    <logger name="com.zishanshu" level="INFO" additional="true" >-->
 <!--        <appender-ref ref="STDOUT" />-->
 <!--    </logger>-->
     <!-- 根日志级别 -->

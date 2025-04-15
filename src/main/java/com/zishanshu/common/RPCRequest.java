@@ -1,10 +1,7 @@
 package com.zishanshu.common;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -12,9 +9,10 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @ToString
+@NoArgsConstructor
 public class RPCRequest implements Serializable {
     private String interfaceName;
     private String methodName;
-    private Object[] params;
     private Class<?>[] paramTypes;
+    private Object[] params;
 }

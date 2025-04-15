@@ -103,3 +103,49 @@ WorkThread中建立socket的输入输出流
 
 
 * 当前服务端采用BIO的方式,效率很低,尝试采用NIO的方法传输数据,gRPC,Dubbo都是采用Netty来实现的,我们也用Netty
+
+## V4 版本
+实现了用Netty通信
+具体的细节看注释和netty的笔记吧
+
+## V5 版本
+### 序列化导致的效率问题
+上一个版本中,下面的代码就是java自带的序列化方法,内部通过ObjectOutputStream序列化数据
+```java
+new ObjectDecoder(new ClassResolver() {
+            @Override
+            public Class<?> resolve(String className) throws ClassNotFoundException {
+                return Class.forName(className);
+            }
+        })
+```
+jdk自带的对象序列化类ObjectInputStream和ObjectOutputStream有很多毛病
+1. 序列化的效率很低,因为它会把对象的所有属性都序列化,包括一些不必要的属性, java序列化编码是二进制编码的5倍多
+2. 无法跨语言,这是java内部的私有协议
+3. 序列化性能低
+
+### Protobuf
+protobuf是谷歌开源的一个高效的序列化框架,它的序列化性能比java自带的序列化性能高10倍以上
+1. 结构化的数据存储格式
+2. 高性能编解码技术
+3. 跨语言支持
+
+protostuff也许是最佳选择。protostuff相比于kyro还有一个额外的好处，就是如果序列化之后，反序列化之前这段时间内，
+java class增加了字段（这在实际业务中是无法避免的事情），kyro就废了。 
+但是protostuff只要保证新字段添加在类的最后，而且用的是sun系列的JDK, 是可以正常使用的。
+因此，如果序列化是用在缓存等场景下，序列化对象需要存储很久，也就只能选择protostuff了
+、
+
+### faceBook的Thrift
+1. 支持多语言
+2. Thrift适用了组建大型数据交换及存储工具，对于大型系统中的内部数据传输，相对于Json和xml在性能上和传输大小上都有明显的优势
+3. 支持三种典型的编码方式.通用二进制编码,压缩二进制编码和优化可选字段压缩编码
+
+### kryo
+1. 速度快，序列化后体积小
+2. 跨语言支持较复杂
+
+### 序列化成json的有:
+* jackson
+* gson
+* fastjson

@@ -1,5 +1,6 @@
 package com.zishanshu.client.RPCClientImpl;
 
+import com.alibaba.fastjson.parser.ParserConfig;
 import com.zishanshu.client.RPCClient;
 import com.zishanshu.common.RPCRequest;
 import com.zishanshu.common.RPCResponse;
@@ -44,11 +45,13 @@ public class NettyRPCClient implements RPCClient {
             Channel channel = bootstrap.connect(this.host,this.port).sync().channel();
             // 发送结果
             channel.writeAndFlush(rpcRequest);
-            // 阻塞住
+            // 阻塞住`
             channel.closeFuture().sync();
+
 
             AttributeKey<RPCResponse> key = AttributeKey.valueOf("RPCResponse");
             RPCResponse response = channel.attr(key).get();
+
 
             log.debug("收到response"+ response);
             return response;

@@ -32,13 +32,12 @@ public class ClientProxy implements InvocationHandler {
                 .params(args)
                 .paramTypes(paramTypes)
                 .build();
-
-        log.debug("构建请求对象 rpcRequest:{}", rpcRequest);
+//        log.debug("构建请求对象 rpcRequest:{}", rpcRequest);
         // 2. 发送请求
         RPCResponse response = rpcClient.sendRequest(rpcRequest);
 
         // 3. 返回结果
-        if (response == null || response.getCode() == 200) {
+        if (response != null && response.getCode() == 200) {
             return response.getData();
         } else {
             throw new RuntimeException("RPC调用失败");

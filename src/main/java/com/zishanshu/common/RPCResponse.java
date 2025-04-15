@@ -1,21 +1,22 @@
 package com.zishanshu.common;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 
 @Data
 @Builder
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class RPCResponse implements Serializable {
     private int code;
     private String message;
+    private Class<?> dataType;
     private Object data;
 
     public static RPCResponse success(Object data) {
-        return RPCResponse.builder().code(200).message("success").data(data).build();
+        return RPCResponse.builder().code(200).message("success").data(data).dataType(data.getClass()).build();
     }
 
     public static RPCResponse fail() {

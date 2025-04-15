@@ -18,10 +18,10 @@ public class TestClient {
         User userByUserId = userService.getUserById(10);
         System.out.println(userByUserId);
 
-
-        BlogService blogService = clientProxy.getProxy(BlogService.class);
-
-        System.out.println(blogService.getBlogById(10));
+//
+//        BlogService blogService = clientProxy.getProxy(BlogService.class);
+//
+//        System.out.println(blogService.getBlogById(10));
 
 
     }
