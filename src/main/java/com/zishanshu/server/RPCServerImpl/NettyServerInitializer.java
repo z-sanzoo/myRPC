@@ -25,7 +25,7 @@ public class NettyServerInitializer extends ChannelInitializer<NioSocketChannel>
 
     @Override
     protected void initChannel(NioSocketChannel ch) throws Exception {
-        ch.pipeline().addLast(new LoggingHandler(LogLevel.DEBUG));
+//        ch.pipeline().addLast(new LoggingHandler(LogLevel.DEBUG));
         ch.pipeline().addLast(new Decoder());
         ch.pipeline().addLast(new NettyRPCServerHandler(serviceProvider));
         ch.pipeline().addLast(new Encoder(new ProtobufSerializer()));

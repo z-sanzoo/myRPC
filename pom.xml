@@ -45,7 +45,17 @@
             <artifactId>protostuff-runtime</artifactId>
             <version>1.8.0</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.logging.log4j</groupId>-->
+<!--            <artifactId>log4j</artifactId>-->
+<!--            <version>2.17.1</version>-->
+<!--        </dependency>-->
 
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>5.1.0</version>
+        </dependency>
 
     </dependencies>
 

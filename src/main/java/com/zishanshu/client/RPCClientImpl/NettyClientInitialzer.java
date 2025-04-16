@@ -18,7 +18,7 @@ import io.netty.handler.logging.LoggingHandler;
 public class NettyClientInitialzer extends ChannelInitializer<NioSocketChannel> {
     @Override
     protected void initChannel(NioSocketChannel ch) throws Exception {
-        ch.pipeline().addLast(new LoggingHandler(LogLevel.DEBUG));
+//        ch.pipeline().addLast(new LoggingHandler(LogLevel.DEBUG));
         ch.pipeline().addLast(new Decoder());
 
         ch.pipeline().addLast(new NettyClientHandler());

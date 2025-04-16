@@ -1,13 +1,21 @@
 package com.zishanshu.server;
 
+
+import com.zishanshu.register.ServiceRegister;
+import com.zishanshu.register.ZKServiceRegister;
+
+import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ServiceProvider {
     private Map<String, Object> interfaceProvider;
-
-    public ServiceProvider(){
+    private final ServiceRegister register;
+    private final InetSocketAddress ServiceAddress;
+    public ServiceProvider(String host, int port) {
         this.interfaceProvider = new HashMap<>();
+        register = new ZKServiceRegister();
+        ServiceAddress = new InetSocketAddress(host, port);
     }
 
     public void provideServiceInterface(Object service){
@@ -16,6 +24,7 @@ public class ServiceProvider {
 
         for(Class clazz : interfaces){
             interfaceProvider.put(clazz.getName(),service);
+            register.register(clazz.getName(), ServiceAddress);
         }
 
     }
