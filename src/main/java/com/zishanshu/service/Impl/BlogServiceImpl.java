@@ -9,8 +9,12 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog getBlogById(Integer id) {
+        //随机抛出异常
+        if (Math.random() > 0.5) {
+            throw new RuntimeException("服务调用异常");
+        }
         Blog blog = Blog.builder().id(id).title("我的博客").userId(22).build();
-        log.debug("BlogService服务调用");
+        log.debug("BlogService服务调用"+id);
         return blog;
     }
 

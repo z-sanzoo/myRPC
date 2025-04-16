@@ -9,7 +9,7 @@ import java.util.Random;
 public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Integer id) {
-        log.debug("getUserById服务调用");
+        log.debug("getUserById服务调用"+id);
         Random random = new Random();
         return User.builder().name("zishanshu" + random.nextInt(100)).id(id).sex(random.nextBoolean()).build();
     }

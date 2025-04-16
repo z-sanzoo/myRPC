@@ -24,7 +24,7 @@ public class ServiceProvider {
 
         for(Class<?> clazz : interfaces){
             interfaceProvider.put(clazz.getName(),service);
-            register.register(clazz.getName(), ServiceAddress);
+            register.register(clazz.getName(), ServiceAddress,true);
         }
 
     }
