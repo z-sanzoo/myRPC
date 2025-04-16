@@ -20,7 +20,6 @@ public class NettyClientInitialzer extends ChannelInitializer<NioSocketChannel> 
     protected void initChannel(NioSocketChannel ch) throws Exception {
 //        ch.pipeline().addLast(new LoggingHandler(LogLevel.DEBUG));
         ch.pipeline().addLast(new Decoder());
-
         ch.pipeline().addLast(new NettyClientHandler());
         ch.pipeline().addLast(new Encoder(new ProtobufSerializer()));
 

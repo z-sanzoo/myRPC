@@ -57,7 +57,7 @@ public class NettyRPCClient implements RPCClient {
             RPCResponse response = channel.attr(key).get();
 
 
-            log.debug("收到response"+ response);
+//            log.debug("收到response"+ response);
             return response;
 
         } catch ( InterruptedException e) {

@@ -22,7 +22,7 @@ public class ServiceProvider {
         String serviceName = service.getClass().getName();
         Class<?>[] interfaces = service.getClass().getInterfaces();
 
-        for(Class clazz : interfaces){
+        for(Class<?> clazz : interfaces){
             interfaceProvider.put(clazz.getName(),service);
             register.register(clazz.getName(), ServiceAddress);
         }
@@ -31,5 +31,9 @@ public class ServiceProvider {
 
     public Object getService(String interfaceName){
         return interfaceProvider.get(interfaceName);
+    }
+
+    public void close(){
+        register.deregister();
     }
 }

@@ -26,7 +26,7 @@ public class Decoder extends ByteToMessageDecoder {
         int length = in.readInt();
         byte[] bytes = new byte[length];
         in.readBytes(bytes);
-        log.debug(messageType.name());
+//        log.debug(messageType.name());
         Object deserialize = serializer.deserialize(bytes,messageType);
         list.add(deserialize);
     }

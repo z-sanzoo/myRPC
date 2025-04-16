@@ -6,7 +6,7 @@ import com.zishanshu.service.BlogService;
 import com.zishanshu.service.UserService;
 
 public class TestClient {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // 构建一个使用java Socket传输的客户端
         RPCClient RPCClient = new NettyRPCClient();
 // 把这个客户端传入代理客户端
@@ -20,8 +20,12 @@ public class TestClient {
 
         BlogService blogService = clientProxy.getProxy(BlogService.class);
 
-        System.out.println(blogService.getBlogById(10));
 
+        while(true){
+            Thread.sleep(1000);
+            System.out.println(blogService.getBlogById(13));
+
+        }
 
     }
 }

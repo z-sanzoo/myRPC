@@ -10,7 +10,7 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getBlogById(Integer id) {
         Blog blog = Blog.builder().id(id).title("我的博客").userId(22).build();
-        log.debug("客户端查询了"+id+"博客");
+        log.debug("BlogService服务调用");
         return blog;
     }
 

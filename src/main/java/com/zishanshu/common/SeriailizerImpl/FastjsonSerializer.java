@@ -48,7 +48,7 @@ public class FastjsonSerializer implements Serializer {
 //                    System.out.print((char)b);
 //                }
                 RPCResponse response = JSON.parseObject(bytes, RPCResponse.class);
-                log.debug(response.toString());
+//                log.debug(response.toString());
 
                 Class<?> dataType = response.getDataType();
                 if(! dataType.isAssignableFrom(response.getData().getClass())){
